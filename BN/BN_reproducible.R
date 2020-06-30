@@ -171,7 +171,7 @@ plot.inflacion
 ggarrange(plot.TBP, plot.inflacion,
           ncol = 1, nrow = 2)
 
-ggsave("1_PresupuestoBN.png", width = 16, height = 20, units = "cm")
+ggsave("BN/1_PresupuestoBN.png", width = 16, height = 20, units = "cm")
 
 ##Ingreso
 BN.ingreso.lag1
@@ -235,7 +235,7 @@ plot.TBP
 ggarrange(plot.compra,plot.TBP,
           ncol = 1, nrow = 2)
 
-ggsave("2_IngresoBN.png", width = 16, height = 20, units = "cm")
+ggsave("BN/2_IngresoBN.png", width = 16, height = 20, units = "cm")
 
 ##Egreso
 BN.egreso.lag1
@@ -301,7 +301,7 @@ plot.TBP
 ggarrange(plot.compra,plot.TBP,
           ncol = 1, nrow = 2)
 
-ggsave("3_EgresoBN.png", width = 16, height = 20, units = "cm")
+ggsave("BN/3_EgresoBN.png", width = 16, height = 20, units = "cm")
 
 ##Superavit
 BN.superavit.lag0
@@ -309,7 +309,7 @@ summary(BN.superavit.lag1)
 
 #Gobierno
 range(BN.lag0$Inflacion)
-newdata <- data.frame(Gobierno = levels(BN.lag2$Gobierno),
+newdata <- data.frame(Gobierno = levels(as.factor(BN.lag3$Gobierno)),
                       Partido=NA)
 newdata$Gobierno <- as.factor(newdata$Gobierno)
 newdata$Gobierno <- factor(newdata$Gobierno,levels = c("Arias","Chinchilla","Solis","Alvarado"))
@@ -338,7 +338,7 @@ plot.gobierno <- ggplot(newdata3, aes(Gobierno, fit, colour=Partido)) +
 plot.gobierno
 
 
-ggsave("4_SuperavitBN.png", width = 18, height = 12, units = "cm")
+ggsave("BN/4_SuperavitBN.png", width = 18, height = 12, units = "cm")
 
 summary(BN.presup.lag3)
 summary(BN.ingreso.lag1)
@@ -377,9 +377,9 @@ plot.pres <- ggplot(newdata3, aes(Año, Prediccion)) +
 
 plot.pres
 #guardar gráfico
-ggsave(paste("5_PresupBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
+ggsave(paste("BN/5_PresupBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
 #guardar datos
-write.csv(newdata3, paste("PresupuestoBN",Sys.Date(),".csv",sep = ""))
+write.csv(newdata3, paste("BN/PresupuestoBN",Sys.Date(),".csv",sep = ""))
 
 #Ingreso
 #seleccionar variables de interes
@@ -411,9 +411,9 @@ plot.ingr <- ggplot(newdata3, aes(Año, Prediccion)) +
 
 plot.ingr
 #guardar gráfico
-ggsave(paste("6_IngresoBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
+ggsave(paste("BN/6_IngresoBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
 #guardar datos
-write.csv(newdata3, paste("IngresoBN",Sys.Date(),".csv",sep = ""))
+write.csv(newdata3, paste("BN/IngresoBN",Sys.Date(),".csv",sep = ""))
 
 #Egreso
 #seleccionar variables de interes
@@ -445,9 +445,9 @@ plot.egr <- ggplot(newdata3, aes(Año, Prediccion)) +
 
 plot.egr
 #guardar gráfico
-ggsave(paste("7_EgresoBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
+ggsave(paste("BN/7_EgresoBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
 #guardar datos
-write.csv(newdata3, paste("EgresoBN",Sys.Date(),".csv",sep = ""))
+write.csv(newdata3, paste("BN/EgresoBN",Sys.Date(),".csv",sep = ""))
 
 #Superavit
 #seleccionar variables de interes
@@ -479,7 +479,7 @@ plot.sup <- ggplot(newdata3, aes(Año, Prediccion)) +
 
 plot.sup
 #guardar gráfico
-ggsave(paste("8_SuperavitBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
+ggsave(paste("BN/8_SuperavitBN_PredvsReal",Sys.Date(),".png",sep = ""), width = 20, height = 12, units = "cm")
 #guardar datos
-write.csv(newdata3, paste("SuperavitBN",Sys.Date(),".csv",sep = ""))
+write.csv(newdata3, paste("BN/SuperavitBN",Sys.Date(),".csv",sep = ""))
 
